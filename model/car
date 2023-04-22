@@ -1,0 +1,79 @@
+package model
+
+type Car struct {
+	GormType
+	Plate      string     `gorm:"not null"`
+	Model      string     `gorm:"not null"`
+	Brand      string     `gorm:"not null"`
+	Status     string     `gorm:"not null"`
+	CarPayment CarPayment `gorm:"foreignKey:carID"`
+	CarWash    CarWash    `gorm:"foreignKey:carID"`
+}
+
+type Options struct {
+	GormType
+	Type      string `gorm:"default="`
+	carWashID string `gorm:"not null"`
+}
+
+type CarWash struct {
+	GormType
+	Option          []Options `gorm:"foreignKey:carWashID""`
+	PayInstallments string    `gorm:"default="`
+	TotalValue      string    `gorm:"default="`
+	ValuePay        string    `gorm:"default="`
+	DayOfPayment    string    `gorm:"default="`
+	CarId           bool      `gorm:"not null;default=false"`
+}
+
+type CarWashRequest struct {
+	GormType
+	Option          []Options `gorm:"foreignKey:carWashID""`
+	PayInstallments string    `gorm:"default="`
+	TotalValue      string    `gorm:"default="`
+	ValuePay        string    `gorm:"default="`
+	DayOfPayment    string    `gorm:"default="`
+	CarId           bool      `gorm:"not null;default=false"`
+}
+
+type CarPayment struct {
+	GormType
+	AllInstallments string `gorm:"default="`
+	PayInstallments string `gorm:"default="`
+	TotalValue      string `gorm:"default="`
+	ValuePay        string `gorm:"default="`
+	DayOfPayment    string `gorm:"default="`
+	CarId           bool   `gorm:"not null;default=false"`
+}
+
+type CarRequest struct {
+	Plate           string `gorm:"not null"`
+	Model           string `gorm:"not null"`
+	Brand           string `gorm:"not null"`
+	Status          string `gorm:"not null"`
+	AllInstallments string `gorm:"default="`
+	PayInstallments string `gorm:"default="`
+	TotalValue      string `gorm:"default="`
+	ValuePay        string `gorm:"default="`
+	DayOfPayment    string `gorm:"default="`
+}
+
+type CloudAccountFullResponse struct {
+	ID            string `json:"id" binding:"required"`
+	WorkspaceID   string `json:"workspaceId" binding:"required"`
+	EnvironmentID string `json:"environmentId" binding:"required"`
+	Role          string `json:"role" binding:"required"`
+	Status        string `json:"status" binding:"required"`
+	CloudProvider string `json:"cloudProvider" binding:"required"`
+}
+
+type CloudAccountResponse struct {
+	CloudAccountId    string `json:"cloudAccountId" binding:"required"`
+	ProviderAccountId string `json:"providerAccountId" binding:"required"`
+}
+
+type CloudProviderResponse struct {
+	ID      string `json:"id" binding:"required"`
+	Name    string `json:"name" binding:"required"`
+	Managed bool   `json:"managed" binding:"required"`
+}
