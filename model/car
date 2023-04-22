@@ -57,23 +57,3 @@ type CarRequest struct {
 	ValuePay        string `gorm:"default="`
 	DayOfPayment    string `gorm:"default="`
 }
-
-type CloudAccountFullResponse struct {
-	ID            string `json:"id" binding:"required"`
-	WorkspaceID   string `json:"workspaceId" binding:"required"`
-	EnvironmentID string `json:"environmentId" binding:"required"`
-	Role          string `json:"role" binding:"required"`
-	Status        string `json:"status" binding:"required"`
-	CloudProvider string `json:"cloudProvider" binding:"required"`
-}
-
-type CloudAccountResponse struct {
-	CloudAccountId    string `json:"cloudAccountId" binding:"required"`
-	ProviderAccountId string `json:"providerAccountId" binding:"required"`
-}
-
-type CloudProviderResponse struct {
-	ID      string `json:"id" binding:"required"`
-	Name    string `json:"name" binding:"required"`
-	Managed bool   `json:"managed" binding:"required"`
-}
